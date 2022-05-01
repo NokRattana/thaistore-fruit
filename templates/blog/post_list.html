@@ -1,0 +1,68 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+
+	<!-- breadcrumb-section -->
+	<div class="">
+		<div class="container">
+			<div class="row">
+				<div class="">
+					<div class="">
+	<!-- latest news -->
+	<div class="latest-news mt-150 mb-150">
+		<div class="container">
+			<div class="row">
+				{% for post in object_list %}
+				<div class="col-lg-4 col-md-6">
+					<div class="single-latest-news">
+						<div><a href="single-news.html"><img src="{{ post.image.url}}" class="rounded mx-auto d-block" alt="..."></div></a>
+						<div class="news-text-box">
+							<h3><a href="single-news.html">{{ post.title}}.</a></h3>
+							<p class="blog-meta">
+								<span class="author"><i class="fas fa-user"></i> Admin</span>
+								<span class="date"><i class="fas fa-calendar"></i> 27 December, 2019</span>
+							</p>
+							<p class="excerpt">{{ post.text}}</p>
+							<a href="single-news.html" class="read-more-btn">read more <i class="fas fa-angle-right"></i></a>
+						</div>
+					</div>
+				</div>
+
+				{% endfor %}
+
+	<!--end blog item-->
+
+
+
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 text-center">
+				<div class="pagination-wrap">
+					
+					<ul>
+					
+						{% if page_obj.has_previous%}
+
+						<li><a class="page-link" href="?page=1">&laquo; first</a></li>
+						<li><a href="?page={{page_obj.previous_page_number}}">Prev</a></li>
+						{% endif %}
+						
+						<li> <a class="page-item active"> page={{page_obj.number}}of{{page_obj.paginator.num_pages}} </a></li>
+						{% if page_obj.has_next %}
+						<li><a href="?page={{page_obj.next_page_number}}">Next</a></li>
+						<li><a href="?page={{page_obj.paginator.num_pages}}">last &laquo; </a></li>
+						{% endif %}
+						
+					
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--end-->
+			</div>
+	
+
+
+	
+{% endblock %}
